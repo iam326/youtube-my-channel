@@ -13,7 +13,12 @@ def main():
 
     channel = youtube.get_my_channel()
     videos = youtube.get_my_videos()
-    print(videos)
+
+    total_seconds = 0
+    for video in videos:
+        total_seconds += video['duration']
+
+    print(total_seconds / 60 / 60)
 
 
 if __name__ == '__main__':

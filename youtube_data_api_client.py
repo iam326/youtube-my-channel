@@ -72,7 +72,7 @@ class YoutubeDataApiClient():
             type='video',
             order='date',
             maxResults=50,
-            fields='items(id(videoId))'
+            fields='nextPageToken,items(id(videoId))'
         )
 
         video_ids = []
@@ -83,7 +83,8 @@ class YoutubeDataApiClient():
                 video_ids.append(video['id']['videoId'])
 
             search_list_request = self.__client.search().list_next(
-                search_list_request, search_list_response)
+                previous_request=search_list_request,
+                previous_response=search_list_response)
 
         videos = []
         for ids in self.__chunks(video_ids, 50):
