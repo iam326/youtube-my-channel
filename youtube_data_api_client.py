@@ -3,6 +3,7 @@
 import os
 
 import httplib2
+import isodate
 
 from apiclient.discovery import build
 from oauth2client.client import flow_from_clientsecrets
@@ -95,12 +96,16 @@ class YoutubeDataApiClient():
                 snippet = item['snippet']
                 details = item['contentDetails']
                 statistics = item['statistics']
+
+                # https://stackoverflow.com/a/16743442
+                duration = isodate.parse_duration(details['duration'])
+
                 videos.append({
                     'id': item['id'],
                     'title': snippet['title'],
                     'description': snippet['description'],
                     'published_at': snippet['publishedAt'],
-                    'duration': details['duration'],
+                    'duration': int(duration.total_seconds()),
                     'view_count': statistics['viewCount'],
                     'like_count': statistics['likeCount'],
                     'dislike_count': statistics['dislikeCount'],
@@ -110,5 +115,6 @@ class YoutubeDataApiClient():
         return videos
 
     def __chunks(self, l, n):
+        # https://stackoverflow.com/a/312464
         for i in range(0, len(l), n):
             yield l[i:i + n]
