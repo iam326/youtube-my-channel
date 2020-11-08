@@ -48,7 +48,10 @@ class YoutubeDataApiClient():
 
     def get_my_channel(self):
         channels = self.__client.channels().list(
-            part='snippet,statistics', mine=True).execute()
+            part='snippet,statistics',
+            mine=True,
+            fields='items(id,snippet(title,description),statistics(videoCount,viewCount,subscriberCount))'
+        ).execute()
         channel = channels['items'][0]
         snippet = channel['snippet']
         statistics = channel['statistics']
@@ -63,7 +66,13 @@ class YoutubeDataApiClient():
 
     def get_my_videos(self):
         search_list_request = self.__client.search().list(
-            part='id', forMine=True, type='video', order='date', maxResults=50)
+            part='id',
+            forMine=True,
+            type='video',
+            order='date',
+            maxResults=50,
+            fields='items(id(videoId))'
+        )
 
         video_ids = []
         while search_list_request:
