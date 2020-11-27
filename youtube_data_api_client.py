@@ -65,7 +65,7 @@ class YoutubeDataApiClient():
             'subscriber_count': statistics['subscriberCount'],
         }
 
-    def get_my_videos(self):
+    def get_my_video_ids(self):
         search_list_request = self.__client.search().list(
             part='id',
             forMine=True,
@@ -86,6 +86,9 @@ class YoutubeDataApiClient():
                 previous_request=search_list_request,
                 previous_response=search_list_response)
 
+        return video_ids
+
+    def get_videos(self, video_ids):
         videos = []
         for ids in self.__chunks(video_ids, 50):
             videos_list = self.__client.videos().list(

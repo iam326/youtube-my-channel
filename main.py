@@ -14,7 +14,8 @@ def main():
         YOUTUBE_DATA_CLIENT_SECRETS_FILE, YOUTUBE_DATA_API_CLIENT_SCOPES)
 
     channel = youtube.get_my_channel()
-    videos = youtube.get_my_videos()
+    video_ids = youtube.get_my_video_ids()
+    videos = youtube.get_videos(video_ids)
 
     total = {
         'duration': 0,
