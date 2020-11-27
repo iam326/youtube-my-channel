@@ -107,9 +107,9 @@ class YoutubeDataApiClient():
                     'description': snippet['description'],
                     'published_at': snippet['publishedAt'],
                     'duration': int(duration.total_seconds()),
-                    'view_count': statistics['viewCount'],
-                    'like_count': statistics['likeCount'],
-                    'dislike_count': statistics['dislikeCount'],
+                    'view_count': int(statistics['viewCount']),
+                    'like_count': int(statistics['likeCount']),
+                    'dislike_count': int(statistics['dislikeCount']),
                     'comment_count': statistics['commentCount']
                 })
 
