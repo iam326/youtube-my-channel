@@ -1,6 +1,6 @@
 # youtube-my-channel
 
-自分の YouTube チャンネルに関する情報を YouTube Data API から取得する。
+YouTube Data API を使って、自分のチャンネルに関するデータを集計する
 
 ## Environment
 
