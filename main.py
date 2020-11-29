@@ -32,10 +32,10 @@ def main():
     print(channel['title'])
     print('配信回数:', channel['video_count'])
     print('総視聴回数:', channel['view_count'])
-    print('チャンネル登録者数', channel['subscriber_count'])
-    print('総高評価数', total['like_count'])
-    print('総低評価数', total['dislike_count'])
-    print('総配信時間', math.floor(total_hours))
+    print('チャンネル登録者数:', channel['subscriber_count'])
+    print('総高評価数:', total['like_count'])
+    print('総低評価数:', total['dislike_count'])
+    print('総配信時間:', math.floor(total_hours))
 
 
 if __name__ == '__main__':
